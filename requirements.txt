@@ -22,7 +22,6 @@ cryptography==36.0.1
 cycler==0.11.0
 cymem==2.0.6
 decorator==5.1.1
-deep-pipe @ git+https://github.com/neuro-ml/deep_pipe@8247580b806d7004a52cfa4d70c8ff1ba56122d4
 dicom2nifti==2.3.0
 docker-pycreds==0.4.0
 executing==0.10.0
@@ -73,7 +72,6 @@ oauthlib==3.1.1
 opencv-python==4.5.5.62
 opt-einsum==3.3.0
 outcome==1.1.0
-packaging @ file:///private/tmp/sip--packaging-20220416-83003-1hqovwb/packaging-21.3
 pandas==1.3.4
 parso==0.8.3
 pathtools==0.1.2
@@ -100,7 +98,6 @@ pydantic==1.9.2
 pydicom==2.2.2
 Pygments==2.13.0
 pyOpenSSL==22.0.0
-pyparsing @ file:///private/tmp/sip--pyparsing-20220416-83003-17i9c2w/pyparsing-3.0.8
 PyQt3D==5.15.5
 PyQt5==5.15.6
 PyQt5-sip==12.9.0
