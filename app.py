@@ -30,6 +30,12 @@ def upload_file():
 @app.route('/display', methods = ['GET', 'POST'])
 def save_file():
     if request.method == 'POST':
+        dirpath = os.path.join('static', 'tmp')
+        if os.path.exists(dirpath) and os.path.isdir(dirpath):
+            shutil.rmtree(dirpath)
+        dirpath = os.path.join('static', 'output')
+        if os.path.exists(dirpath) and os.path.isdir(dirpath):
+            shutil.rmtree(dirpath)
         os.mkdir(app.config['UPLOAD_FOLDER'] + 'tmp')
         os.mkdir(app.config['UPLOAD_FOLDER'] + 'output')
         files = request.files.getlist('file')
