@@ -1,5 +1,6 @@
 fastai==2.7.9
 Flask==2.0.2
+gunicorn
 numpy==1.23.2
 pandas
 Pillow==8.4.0
