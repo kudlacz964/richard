@@ -1,10 +1,10 @@
-fastai==2.7.9
-Flask==2.0.2
+fastai
+Flask
 gunicorn
-numpy==1.23.2
+numpy
 pandas
-Pillow==8.4.0
-pydicom==2.2.2
+Pillow
+pydicom
 scipy
-tqdm==4.62.3
-Werkzeug==2.0.2
+tqdm
+Werkzeug
