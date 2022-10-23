@@ -107,5 +107,4 @@ webcolors==1.11.1
 Werkzeug==2.0.2
 wrapt==1.12.1
 wsproto==1.1.0
-wxPython==4.1.1
 yaspin==2.1.0
