@@ -52,7 +52,7 @@ def save_file():
         for file in files:
             filename = secure_filename(file.filename)
             blob = bucket.blob(filename)
-            blob.upload_from_filename(file)
+            blob.upload_from_filename(filename)
             blob.download_to_filename(app.config['UPLOAD_FOLDER'] + 'tmp/' + filename)
             #file.save(app.config['UPLOAD_FOLDER'] + 'tmp/' + filename)
             blob.delete()
