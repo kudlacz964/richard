@@ -52,11 +52,9 @@ def save_file():
         for file in files:
             filename = secure_filename(file.filename)
             blob = bucket.blob(filename)
-            with blob.open("w") as f:
-                f.write(file)
+            blob.upload_from_filename(file)
+            blob.download_to_filename(app.config['UPLOAD_FOLDER'] + 'tmp/' + filename)
             #file.save(app.config['UPLOAD_FOLDER'] + 'tmp/' + filename)
-            with blob.open("r") as f:
-                f.read().save(app.config['UPLOAD_FOLDER'] + 'tmp/' + filename)
             blob.delete()
         preprocess.prepare_png('input', 'output', channels=(1, 2, 6), crop=False)
         print('preprocessed')
