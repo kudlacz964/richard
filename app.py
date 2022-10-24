@@ -43,6 +43,7 @@ def save_file():
             filename = secure_filename(file.filename)
             file.save(app.config['UPLOAD_FOLDER'] + 'tmp/' + filename)
         preprocess.prepare_png('input', 'output', channels=(1, 2, 6), crop=False)
+        print('preprocessed')
         shutil.rmtree(app.config['UPLOAD_FOLDER'] + 'tmp')
 ###
         #df = pd.read_csv(app.config['csv_path'])
@@ -64,6 +65,7 @@ def save_file():
             img = Image.fromarray(image.astype('uint8'))
             img.save(file_object, 'PNG')
             pic = ('data:image/png;base64,'+b64encode(file_object.getvalue()).decode('ascii'))
+            print('saved')
             preds = []
             diag, null, probs = learn.predict(app.config['UPLOAD_FOLDER'] + 'output/' + slice)
             print(diag)
