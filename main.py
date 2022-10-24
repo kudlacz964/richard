@@ -4,6 +4,7 @@ from werkzeug.utils import secure_filename
 from fastai.vision.all import *
 from PIL import Image
 from base64 import b64encode
+from google.cloud import storage
 
 import numpy as np
 import pandas as pd
@@ -21,6 +22,14 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/'
 #app.config['trn_path'] = 'static/data'
 #app.config['csv_path'] = 'static/labels_jpg.csv'
+
+# Instantiates a client
+storage_client = storage.Client()
+# The name for the new bucket
+bucket_name = "richard-alpha-bucket"
+# Creates the new bucket
+bucket = storage_client.create_bucket(bucket_name)
+print(f"Bucket {bucket.name} created.")
 
 @app.route('/')
 def upload_file():
@@ -41,7 +50,13 @@ def save_file():
         files = request.files.getlist('file')
         for file in files:
             filename = secure_filename(file.filename)
-            file.save(app.config['UPLOAD_FOLDER'] + 'tmp/' + filename)
+            blob = bucket.blob(filename)
+            with blob.open("w") as f:
+                f.write(file)
+            #file.save(app.config['UPLOAD_FOLDER'] + 'tmp/' + filename)
+            with blob.open("r") as f:
+                f.read().save(app.config['UPLOAD_FOLDER'] + 'tmp/' + filename)
+            blob.delete()
         preprocess.prepare_png('input', 'output', channels=(1, 2, 6), crop=False)
         print('preprocessed')
         shutil.rmtree(app.config['UPLOAD_FOLDER'] + 'tmp')
