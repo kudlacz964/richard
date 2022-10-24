@@ -58,13 +58,16 @@ def save_file():
         learn = load_learner('static/multilabel_densenet121_5.pkl')
         print('loaded')
         slices = os.listdir(app.config['UPLOAD_FOLDER'] + 'output')
+        predictions = []
+        images = []
         for slice in slices:
             image = Image.open(app.config['UPLOAD_FOLDER'] + 'output/' + slice)
             image = np.asarray(image)
             file_object = io.BytesIO()
             img = Image.fromarray(image.astype('uint8'))
             img.save(file_object, 'PNG')
-            pic = ('data:image/png;base64,'+b64encode(file_object.getvalue()).decode('ascii'))
+            #pic = ('data:image/png;base64,'+b64encode(file_object.getvalue()).decode('ascii'))
+            images.append('data:image/png;base64,'+b64encode(file_object.getvalue()).decode('ascii'))
             print('saved')
             preds = []
             diag, null, probs = learn.predict(app.config['UPLOAD_FOLDER'] + 'output/' + slice)
@@ -73,9 +76,10 @@ def save_file():
                 index = scores.index(i)
                 preds.append(str(i) + ' ' + str(float(probs[index])*100)[:4] + '%')
                 print(i, float(probs[index]))
+            predictions.append(preds)
         shutil.rmtree(app.config['UPLOAD_FOLDER'] + 'output')
 ###
-    return render_template('content.html', preds = preds, pic = pic)
+    return render_template('content.html', predictions = predictions, images = images)
 
 if __name__ == '__main__':
     app.run(host = '0.0.0.0', port = 8080, debug = False)
