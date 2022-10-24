@@ -28,8 +28,9 @@ storage_client = storage.Client()
 # The name for the new bucket
 bucket_name = "richard-alpha-bucket"
 # Creates the new bucket
-bucket = storage_client.create_bucket(bucket_name)
-print(f"Bucket {bucket.name} created.")
+#bucket = storage_client.create_bucket(bucket_name)
+bucket = storage_client.bucket(bucket_name)
+#print(f"Bucket {bucket.name} created.")
 
 @app.route('/')
 def upload_file():
