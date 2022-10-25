@@ -14,6 +14,7 @@ import shutil
 import math
 import preprocess
 import fastai
+import gdcm
 
 app = Flask(__name__)
 

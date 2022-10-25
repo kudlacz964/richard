@@ -8,5 +8,4 @@ pydicom
 scipy
 tqdm
 Werkzeug
-google-cloud
-google-cloud-storage
+python-gdcm
