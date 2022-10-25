@@ -59,8 +59,8 @@ def save_file():
             image = np.asarray(image)
             file_object = io.BytesIO()
             img = Image.fromarray(image.astype('uint8'))
-            img.save(file_object, 'JPG')
-            images.append('data:image/jpg;base64,'+b64encode(file_object.getvalue()).decode('ascii'))
+            img.save(file_object, 'PNG')
+            images.append('data:image/png;base64,'+b64encode(file_object.getvalue()).decode('ascii'))
             print('saved')
             preds = []
             diag, null, probs = learn.predict(app.config['UPLOAD_FOLDER'] + 'output/' + slice)
