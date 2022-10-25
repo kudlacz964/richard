@@ -59,7 +59,7 @@ def save_file():
             bucket = storage_client.get_bucket(bucket_name)
             #blob = bucket.blob(filename)
             blob = storage.Blob(filename, bucket)
-            blob.upload_from_filename(filename)
+            blob.upload_from_filename(filepath)
             blob.download_to_filename('static/tmp/' + filename)
             #file.save(app.config['UPLOAD_FOLDER'] + 'tmp/' + filename)
             blob.delete()
